@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "69815876642",
+    "project_id": "online-learning-app-aea3e",
+    "storage_bucket": "online-learning-app-aea3e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:69815876642:android:8ede0280fcca5eb30c5e7b",
+        "android_client_info": {
+          "package_name": "com.example.online_learning_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2wNBnh293QebUXpfBe9rLVo85dxQQm7U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:69815876642:android:a167b871c243c8e80c5e7b",
+        "android_client_info": {
+          "package_name": "com.example.untitled6"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2wNBnh293QebUXpfBe9rLVo85dxQQm7U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
