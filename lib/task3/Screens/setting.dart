@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:untitled6/task3/component/change_passowrd.dart';
 import '../items/setting_items.dart';
+import '../profile.dart';
 
 class SettingScreen extends StatefulWidget {
   @override
@@ -10,18 +12,11 @@ class SettingScreen extends StatefulWidget {
 
 class _SettingScreenState extends State<SettingScreen> {
   bool isLanguageExpanded = false;
-  Map<int, bool> expandedItems = {};
   String selectedLanguage = 'English'; // Default language selection
 
   void toggleLanguageExpansion() {
     setState(() {
       isLanguageExpanded = !isLanguageExpanded;
-    });
-  }
-
-  void toggleItemExpansion(int index) {
-    setState(() {
-      expandedItems[index] = !(expandedItems[index] ?? false);
     });
   }
 
@@ -84,7 +79,8 @@ class _SettingScreenState extends State<SettingScreen> {
                               if (setting.title == 'Language') {
                                 toggleLanguageExpansion();
                               } else if (setting.title == 'profile') {
-                                toggleItemExpansion(index);
+                                // Navigate to another screen when 'Profile' is clicked
+                                Get.to(() => Profile());
                               }
                             },
                             child: Row(
@@ -108,8 +104,7 @@ class _SettingScreenState extends State<SettingScreen> {
                                 if (setting.title != 'Log Out')
                                   Icon(
                                     (setting.title == 'Language' &&
-                                        isLanguageExpanded) ||
-                                        (expandedItems[index] == true)
+                                        isLanguageExpanded)
                                         ? Icons.expand_more // Down arrow when expanded
                                         : Icons.arrow_forward_ios_outlined, // Right arrow when collapsed
                                   ),
@@ -118,26 +113,6 @@ class _SettingScreenState extends State<SettingScreen> {
                           ),
                         ),
                       ),
-                      // If "Profile" is expanded, show "Change Password"
-                      if (setting.title == 'profile' &&
-                          expandedItems[index] == true)
-                        Padding(
-                          padding: EdgeInsets.only(left: 50.w, bottom: 20.h),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              ListTile(
-                                title: Text("Change Password",
-                                    style: TextStyle(
-                                        fontSize: 14.sp,
-                                        fontWeight: FontWeight.bold)),
-                                onTap: () {
-                                  showChangePasswordBottomSheet(context);
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
                       // If "Language" is expanded, show language options
                       if (setting.title == 'Language' && isLanguageExpanded)
                         Padding(

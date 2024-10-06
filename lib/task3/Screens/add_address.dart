@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:untitled6/task3/component/button.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AddAddress extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
@@ -9,6 +10,27 @@ class AddAddress extends StatelessWidget {
   final _regionController=TextEditingController();
   final _zipCodeController=TextEditingController();
   final _phoneController=TextEditingController();
+
+  // Firestore instance
+  final CollectionReference  addresses =  FirebaseFirestore.instance.collection('addresses');
+  Future<void> _saveAddress()async{
+    if(_formKey.currentState!.validate() ){
+      await addresses.add({
+        'address': _addressController.text,
+        'city': _cityController.text,
+        'region': _regionController.text,
+        'zipCode': _zipCodeController.text,
+        'phone':_phoneController.text,
+      }).then((value){
+        // Show a success message or navigate to another screen
+        print("Address Added");
+      }).catchError((error) {
+        // Handle error
+        print("Failed to add address: $error");
+      });
+
+     }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -134,7 +156,7 @@ class AddAddress extends StatelessWidget {
                     ),
                     SizedBox(height: 79.h,),
                     defaultButton(function: () {
-                      _formKey.currentState!.validate();
+                      _saveAddress();
                       
                     }, text: 'SAVE ADDRESS')
 
